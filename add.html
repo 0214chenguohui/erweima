@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二维码生成</title>
+</head>
+<body style="background-image: psb5QU5PH6Y.jpg">
+<center>
+    <h2 style="color: red">用户信息</h2>
+
+    <table>
+        <tr>
+            <td>姓&nbsp;&nbsp;&nbsp;&nbsp;名</td>
+            <td><input type="text" name="uname" id="uname"/></td>
+        </tr>
+        <tr>
+            <td>联系电话</td>
+            <td><input type="text" name="phone" id="phone"/></td>
+        </tr>
+        <tr>
+            <td>公司职位</td>
+            <td><input type="text" name="position" id="position"/></td>
+        </tr>
+        <tr>
+            <td>情感状况</td>
+            <td><input type="radio" name="emotion" value="已婚" class="emotion"/>已婚
+                <input type="radio" name="emotion" value="未婚" class="emotion"/>未婚
+
+            </td>
+        </tr>
+        <tr>
+            <td>邮&nbsp;&nbsp;&nbsp;&nbsp;箱</td>
+            <td><input type="text" name="email" id="email"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" value="SUBMIT" title="点击提交" id="sub"/></td>
+        </tr>
+    </table>
+<div id="box"></div>
+</center>
+</body>
+</html>
+<script src="../jquery-3.1.1.min.js"></script>
+<script>
+  $(document).on('click','#sub',function(){
+      var uname=$('#uname').val();
+      var phone=$('#phone').val();
+      var position=$('#position').val();
+    var emotion=$('input[class=emotion]:checked').val();
+      var email=$('#email').val();
+      $.ajax({
+          type: "POST",
+          url: "do_add.php",
+          data: {uname:uname,phone:phone,position:position,emotion:emotion,email:email},
+          success: function(msg){
+             $('#box').html(msg);
+          }
+      });
+  });
+</script>
